@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task 4 - Fetch API</title>
+<style>
+    body { font-family: sans-serif; background: white; color: black; text-align: center; padding: 20px; }
+    h2 { color: #0a74da; }
+    button { background: #0a74da; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #084c9e; }
+    p { max-width: 500px; margin: 20px auto; font-size: 18px; }
+</style>
+</head>
+<body>
+<h2>Fetch a Random Joke</h2>
+<button onclick="fetchJoke()">Get Joke</button>
+<p id="joke"></p>
+<script>
+function fetchJoke(){
+    document.getElementById('joke').textContent = "Loading...";
+    fetch('https://icanhazdadjoke.com/', { headers: { 'Accept': 'application/json' }})
+    .then(response => response.json())
+    .then(data => { document.getElementById('joke').textContent = data.joke; })
+    .catch(() => { document.getElementById('joke').textContent = "Failed to load joke."; });
+}
+</script>
+</body>
+</html>
